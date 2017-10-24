@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 
 app.use(bodyParser.json());
 
+const routes = require('./api/routes/routes');
+
 Genre = require('./api/models/genres.js');
 Book = require('./api/models/books.js');
 
@@ -13,12 +15,33 @@ Book = require('./api/models/books.js');
 mongoose.connect('mongodb://localhost/bookstore');
 var db = mongoose.connection;
 
+
+app.use(function(err, req, res, next) {
+    if(res.status(404)){
+        res.redirect('/');
+    }
+  });
+
 app.get('/', function(req, res){
+    Vue.http.headers.common['Access-Control-Allow-Origin'] = '*';
+    eader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+    res.setHeader('Access-Control-Allow-Origin', 'Content-Type');
+    
+    
+    if(res.status(404)){
+        res.send('Please use /api/books or /api/genres');
+    }
+    
+});
+
+app.get('/api', function(req, res){
     res.send('Please use /api/books or /api/genres');
+    
 });
 
 app.get('/api/genres', function(req, res){
-    Genre.getGenres(function(err, genres){
+    Genre.getAll(function(err, genres){
         if(err){
             throw err;
         }
@@ -28,7 +51,7 @@ app.get('/api/genres', function(req, res){
 
 app.post('/api/genres', function(req, res){
     var genre = req.body;
-    Genre.addGenres(genre, function(err, genre){
+    Genre.add(genre, function(err, genre){
         if(err){
             throw err;
         }
@@ -39,7 +62,7 @@ app.post('/api/genres', function(req, res){
 app.put('/api/genres/:_id', function(req, res){
     var id = req.params._id;
     var genre = req.body;
-    Genre.updateGenre(id, genre, {}, function(err, genre){
+    Genre.update(id, genre, {}, function(err, genre){
         if(err){
             throw err;
         }
@@ -49,7 +72,7 @@ app.put('/api/genres/:_id', function(req, res){
 
 app.delete('/api/genres/:_id', function(req, res){
     var id = req.params._id;
-    Genre.deleteGenre(id, function(err, genre){
+    Genre.delete(id, function(err, genre){
         if(err){
             throw err;
         }
@@ -58,7 +81,11 @@ app.delete('/api/genres/:_id', function(req, res){
 });
 
 app.get('/api/books', function(req, res){
-    Book.getBooks(function(err, books){
+
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+    
+    Book.getAll(function(err, books){
         if(err){
             throw err;
         }
@@ -67,7 +94,7 @@ app.get('/api/books', function(req, res){
 });
 
 app.get('/api/books/:_id', function(req, res){
-    Book.getBookById(req.params._id, function(err, book){
+    Book.getId(req.params._id, function(err, book){
         if(err){
             throw err;
         }
@@ -76,8 +103,11 @@ app.get('/api/books/:_id', function(req, res){
 });
 
 app.post('/api/books', function(req, res){
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+    
     var book = req.body;
-    Book.addBooks(book, function(err, book){
+    Book.add(book, function(err, book){
         if(err){
             throw err;
         }
@@ -86,9 +116,13 @@ app.post('/api/books', function(req, res){
 });
 
 app.put('/api/books/:_id', function(req, res){
+
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+
     var id = req.params._id;
     var book = req.body;
-    Book.updateBook(id, book, {}, function(err, book){
+    Book.update(id, book, {}, function(err, book){
         if(err){
             throw err;
         }
@@ -98,7 +132,7 @@ app.put('/api/books/:_id', function(req, res){
 
 app.delete('/api/books/:_id', function(req, res){
     var id = req.params._id;
-    Book.deleteBook(id, function(err, book){
+    Book.delete(id, function(err, book){
         if(err){
             throw err;
         }

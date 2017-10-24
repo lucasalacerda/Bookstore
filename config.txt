@@ -1,7 +1,0 @@
-start mongod:
-
-service mongod start
-
-mongo shell:
-
-mongo

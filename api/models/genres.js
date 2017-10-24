@@ -17,19 +17,19 @@ var Genre = module.exports = mongoose.model('Genre', genreSchema);
 
 // Get Genres
 
-module.exports.getGenres = function(callback, limit){
+module.exports.getAll = function(callback, limit){
     Genre.find(callback).limit(limit);
 }
 
 // Add Genre
 
-module.exports.addGenres = function(genre, callback){
+module.exports.add = function(genre, callback){
     Genre.create(genre, callback);
 }
 
 // Update Genre
 
-module.exports.updateGenre = function(id, genre, options, callback){
+module.exports.update = function(id, genre, options, callback){
     var query = {_id: id};
     var update = {
         name: genre.name 
@@ -39,7 +39,7 @@ module.exports.updateGenre = function(id, genre, options, callback){
 
 // Delete Genre
 
-module.exports.deleteGenre = function(id, callback){
+module.exports.delete = function(id, callback){
     var query = {_id: id};
     Genre.findByIdAndRemove(query, callback)
 }

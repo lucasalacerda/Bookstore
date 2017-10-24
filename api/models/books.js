@@ -45,42 +45,32 @@ var Book = module.exports = mongoose.model('Book', bookSchema);
 
 // Get Books
 
-module.exports.getBooks = function(callback, limit){
+module.exports.getAll = function(callback, limit){
     Book.find(callback).limit(limit);
 }
 
 // Get Book by id
 
-module.exports.getBookById = function(id, callback, limit){
+module.exports.getId = function(id, callback){
     Book.findById(id, callback);
-}
+};
 
 // Add Book
 
-module.exports.addBooks = function(book, callback){
+module.exports.add = function(book, callback){
     Book.create(book, callback);
 }
 
 // Update Book
 
-module.exports.updateBook = function(id, book, options, callback){
+module.exports.update = function(id, book, callback){
     var query = {_id: id};
-    var update = {
-        title: book.title,
-        genre: book.genre,
-        description: book.description,
-        author: book.author,
-        publisher: book.publisher,
-        pages: book.pages,
-        image_url: book.image_url,
-        buy_url: book.buy_url
-    };
-    Book.findOneAndUpdate(query, update, options, callback);
+    Book.findOneAndUpdate(query, book, callback);
 }
 
 // Delete Book
 
-module.exports.deleteBook = function(id, callback){
+module.exports.delete = function(id, callback){
     var query = {_id: id};
     Book.findByIdAndRemove(query, callback)
 }
