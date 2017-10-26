@@ -1,14 +1,9 @@
 <template>
   <div id="contain">
-    
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
     <header-component></header-component>
-      <div>
-        <div class="w3-row">
-            <div class="w3-col s1 m4 l12 w3-center">
-              <h1>BOOKS</h1>
-            </div>
-        </div>
-      </div>
+ 
     <books-component v-bind:key="book.id" v-for="book in books"
     :title="book.title" :description="book.description" :image_url="book.image_url"></books-component>
 
