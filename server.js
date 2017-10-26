@@ -1,8 +1,10 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
+app.use(cors());
 
 app.use(bodyParser.json());
 
@@ -22,25 +24,17 @@ app.use(function(err, req, res, next) {
     }
   });
 
-app.get('/', function(req, res){
-    Vue.http.headers.common['Access-Control-Allow-Origin'] = '*';
-    eader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
-    res.setHeader('Access-Control-Allow-Origin', 'Content-Type');
-    
-    
-    if(res.status(404)){
-        res.send('Please use /api/books or /api/genres');
-    }
-    
-});
-
-app.get('/api', function(req, res){
+app.get('/', function(req, res, next){
     res.send('Please use /api/books or /api/genres');
     
 });
 
-app.get('/api/genres', function(req, res){
+app.get('/api', function(req, res, next){
+    res.send('Please use /api/books or /api/genres');
+    
+});
+
+app.get('/api/genres', function(req, res, next){
     Genre.getAll(function(err, genres){
         if(err){
             throw err;
@@ -49,7 +43,7 @@ app.get('/api/genres', function(req, res){
     });
 });
 
-app.post('/api/genres', function(req, res){
+app.post('/api/genres', function(req, res, next){
     var genre = req.body;
     Genre.add(genre, function(err, genre){
         if(err){
@@ -59,7 +53,7 @@ app.post('/api/genres', function(req, res){
     });
 });
 
-app.put('/api/genres/:_id', function(req, res){
+app.put('/api/genres/:_id', function(req, res, next){
     var id = req.params._id;
     var genre = req.body;
     Genre.update(id, genre, {}, function(err, genre){
@@ -70,7 +64,7 @@ app.put('/api/genres/:_id', function(req, res){
     });
 });
 
-app.delete('/api/genres/:_id', function(req, res){
+app.delete('/api/genres/:_id', function(req, res, next){
     var id = req.params._id;
     Genre.delete(id, function(err, genre){
         if(err){
@@ -80,11 +74,8 @@ app.delete('/api/genres/:_id', function(req, res){
     });
 });
 
-app.get('/api/books', function(req, res){
+app.get('/api/books', function(req, res, next){
 
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
-    
     Book.getAll(function(err, books){
         if(err){
             throw err;
@@ -93,7 +84,7 @@ app.get('/api/books', function(req, res){
     });
 });
 
-app.get('/api/books/:_id', function(req, res){
+app.get('/api/books/:_id', function(req, res, next){
     Book.getId(req.params._id, function(err, book){
         if(err){
             throw err;
@@ -102,10 +93,8 @@ app.get('/api/books/:_id', function(req, res){
     });
 });
 
-app.post('/api/books', function(req, res){
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
-    
+app.post('/api/books', function(req, res, next){
+
     var book = req.body;
     Book.add(book, function(err, book){
         if(err){
@@ -115,10 +104,7 @@ app.post('/api/books', function(req, res){
     });
 });
 
-app.put('/api/books/:_id', function(req, res){
-
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+app.put('/api/books/:_id', function(req, res, next){
 
     var id = req.params._id;
     var book = req.body;
@@ -130,7 +116,7 @@ app.put('/api/books/:_id', function(req, res){
     });
 });
 
-app.delete('/api/books/:_id', function(req, res){
+app.delete('/api/books/:_id', function(req, res, next){
     var id = req.params._id;
     Book.delete(id, function(err, book){
         if(err){
@@ -141,7 +127,9 @@ app.delete('/api/books/:_id', function(req, res){
 });
 
 
-app.listen(3000);
-console.log('Running on port 3000'); 
+app.listen(3000, function() {
+    console.log('Running on port 3000'); 
+    
+});
 
 
