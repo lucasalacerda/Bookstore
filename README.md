@@ -1,6 +1,6 @@
 # Bookstore
 
-- Is a project from college. It's a bookstore and I'm using
+Is a project from college. It's a bookstore and I'm using
 > Back-end: Nodejs + Express + Cors
 
 > Persist data: MongoDB
@@ -8,16 +8,16 @@
 > front-end: Vue + W3CSS
 
 
-## - Build setup - 
+## Build setup 
 
 ### Install back-end:
 
-- Go to root directory
+Go to root directory
 > npm install
 
 ### Install front-end:
 
-- Go to ui directory
+Go to ui directory
 > npm install
 
 ### Run project
