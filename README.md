@@ -19,5 +19,6 @@
 
 ### Run project
 
-> start back-end: npm start
+> start back-end: npm start;
+
 > start front-end: npm run dev (Go to the ui directory to run this command)
