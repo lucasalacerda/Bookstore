@@ -7,17 +7,17 @@
 
 ## Build setup
 
-## Install back-end:
+### Install back-end:
 
 - Go to root directory
 > npm install
 
-## Install front-end:
+### Install front-end:
 
 - Go to ui directory
 > npm install
 
-## Run project
+### Run project
 
 > start back-end: npm start
 > start front-end: npm run dev (Go to the ui directory to run this command)
