@@ -1,12 +1,12 @@
 <template>
-            <li class="card-book-item w3-card-4 w3-center w3-col m4 l2 w3-mobile">
-                <div clas="image">
-                    <img :src="image_url">
-                </div>   
-                    <a href="#" style="font-size: 10px">
-                        <p>{{title}}</p>
-                    </a>
-            </li>
+    <li class="card-book-item w3-card-4 w3-center w3-col m4 l2 w3-mobile">
+        <div clas="image">
+            <img :src="image_url">
+        </div>   
+        <a href="#" style="font-size: 10px">
+            <p class="w3-center">{{title}}</p>
+        </a>
+    </li>
 </template>
 
 <script>
@@ -33,9 +33,10 @@ export default {
         margin-bottom: 30px;
     }
     p{
-        width: 190px; /* Tamanho */
+        max-width: 180px; /* Tamanho */
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap
+        white-space: nowrap;
+        text-align: center;
     }
 </style>

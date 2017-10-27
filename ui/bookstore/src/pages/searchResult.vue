@@ -3,22 +3,17 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
     <header-component></header-component>
-    <ul class="w3-container w3-row-padding">
-      <books-card-component v-bind:key="book.id" v-for="book in books"
-      :title="book.title" :description="book.description" :image_url="book.image_url"></books-card-component>
-    </ul>
   </div>
 </template>
 
+
 <script>
-import headerComponent from "./components/header.vue";
-import booksCardComponent from "./components/books.vue";
+import headerComponent from "../components/header.vue";
 
 
 export default {
   components: {
     headerComponent,
-    booksCardComponent,
   },
   beforeCreate() {
     console.log('beforeCreated');
@@ -43,29 +38,3 @@ export default {
 
 };
 </script>
-
-<style>
-
-html{
-  margin: 0px;
-}
-
-h1{
-  padding: 0.5em 4em;
-  margin:0px;
-  position: center;
-}
-
-body{
-  background-size: cover;
-  background-repeat: no-repeat; 
-  margin: 0px;
-}
-
-@media only screen and (max-device-width: 1024px) {
-   
-}
-</style>
-
-
-

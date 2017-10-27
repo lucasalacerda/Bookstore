@@ -10,9 +10,9 @@
             </div>
         </div>
         <div class="links">
-            <a href="#" class="w3-bar-item w3-btn w3-wide w3-mobile">Home</a>
-            <a href="#" class="w3-bar-item w3-btn w3-wide w3-mobile">Admin</a>
-            <a href="#" class="w3-bar-item w3-btn w3-wide w3-mobile">Contato</a>
+            <a href="/" class="w3-bar-item w3-btn w3-wide w3-mobile">Home</a>
+            <a href="/admin" class="w3-bar-item w3-btn w3-wide w3-mobile">Admin</a>
+            <a href="/results" class="w3-bar-item w3-btn w3-wide w3-mobile">Contato</a>
             <a href="#" class="w3-bar-item w3-button w3-grey w3-right w3-wide w3-mobile">Go!</a>
             <input type="text" class="w3-bar-item w3-input w3-right w3-mobile" placeholder="Search..">
         </div>
