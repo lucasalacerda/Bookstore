@@ -2,10 +2,13 @@
 
 - Is a project from college. It's a bookstore and I'm using
 > Back-end: Nodejs + Express + Cors
+
 > Persist data: MongoDB
+
 > front-end: Vue + W3CSS
 
-## Build setup
+
+## - Build setup - 
 
 ### Install back-end:
 
