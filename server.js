@@ -4,7 +4,6 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-app.use(cors());
 
 app.use(bodyParser.json());
 
@@ -18,7 +17,7 @@ mongoose.connect('mongodb://localhost/bookstore');
 var db = mongoose.connection;
 
 
-app.use(function(err, req, res, next) {
+app.get(function(err, req, res, next) {
     if(res.status(404)){
         res.redirect('/');
     }
@@ -104,7 +103,7 @@ app.post('/api/books', function(req, res, next){
     });
 });
 
-app.put('/api/books/:_id', function(req, res, next){
+app.put('/api/books/:_id', function(req, res){
 
     var id = req.params._id;
     var book = req.body;
