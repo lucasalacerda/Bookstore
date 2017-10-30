@@ -7,7 +7,8 @@
             <button class="w3-button w3-black	w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
             <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
         </div>
-    <ul class="w3-container w3-row-padding">      
+    <ul class="w3-container w3-row-padding"> 
+      <h2>News</h2>     
       <books-card-component v-bind:key="book.id" v-for="book in books"
       :title="book.title" :image_url="book.image_url"></books-card-component>
     </ul>
@@ -67,7 +68,7 @@ body{
 
 .slide_show{
   height: 250px;
-  background: url('./img/promo_livro.jpg') no-repeat 50% 50%;
+  background: no-repeat 50% 50%;
   background-size: cover;
   box-shadow: 0.1cm 0.1ch 1ch;
 }
