@@ -3,7 +3,7 @@
         <div clas="image">
             <img :src="image_url">
         </div>   
-        <a href="#" style="font-size: 10px">
+        <a href="#" class="w3-center" style="font-size: 10px">
             <p class="w3-center">{{title}}</p>
         </a>
     </li>
@@ -15,6 +15,7 @@ export default {
   props: ["title", "image_url", "description"]
 };
 </script>
+
 
 
 <style>
@@ -32,7 +33,7 @@ export default {
         margin-right: 10px;
         margin-bottom: 30px;
     }
-    p{
+    p:before{
         max-width: 180px; /* Tamanho */
         overflow: hidden;
         text-overflow: ellipsis;
