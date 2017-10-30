@@ -6,8 +6,7 @@
           <div class="w3-left">
             <h2>Books list</h2>
           </div>
-          <div class="w3-right">
-            <button class="add-button w3-btn w3-wide" style="margin: 0.7em 0em">Add Books</button>
+            <modal-add-book-component></modal-add-book-component>
           </div>
         </div>
 
@@ -32,11 +31,19 @@
 
 <script>
 import bookTableComponent from './booksTable.vue';
+import modalAddBookComponent from './modalAddBook.vue';
+
 
 export default {
     name:'bookListComponent',
     components:{
-        bookTableComponent,
+      modalAddBookComponent,
+      bookTableComponent,
+    },
+    methods:{
+      openModal: function(){
+        console.log('deu certo')
+      }
     },
       beforeCreate() {
     console.log('beforeCreated');
