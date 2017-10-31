@@ -10,7 +10,7 @@
           </div>
         </div>
 
-        <div class="w3-container">
+        <div class="w3-container" style="margin: 1em 0em;">
           <table class="w3-mobile w3-table w3-bordered w3-border">
             <tr>
               <th>Title</th>
@@ -35,30 +35,24 @@ import modalAddBookComponent from './modalAddBook.vue';
 
 
 export default {
-    name:'bookListComponent',
-    components:{
-      modalAddBookComponent,
-      bookTableComponent,
-    },
-    methods:{
-      openModal: function(){
-        console.log('deu certo')
-      }
-    },
-      beforeCreate() {
+  name:'bookListComponent',
+  components:{
+    modalAddBookComponent,
+    bookTableComponent,
+  },
+  beforeCreate() {
     console.log('beforeCreated');
   },
   created() {
-       this.$http.get('http://localhost:3000/api/books').then(response => {
-        this.books = response.body;
+     this.$http.get('http://localhost:3000/api/books').then(response => {
+      this.books = response.body;
   }, function(response){
-    console.log(response.data);
+      console.log(response.data);
     }
   )},
   beforeMount(){
     console.log('beforeMount');
   },
-
   data(){
     return{
       books: [],

@@ -6,16 +6,24 @@
                 <div class="w3-center"><br>
                     <span v-on:click="closeModal" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
                 </div>
-            <form class="w3-container" action="/action_page.php">
+            <form class="w3-container">
                 <div class="w3-section">
                     <h2 class="w3-left">Add Book</h2>
-                    <input class="w3-input w3-margin-bottom" type="text" placeholder="Title" name="book_title" required>
-                    <input class="w3-input w3-margin-bottom" type="text" placeholder="Genre" name="book_genre" required>
-                    <input class="w3-input  w3-margin-bottom" type="textarea" placeholder="Description" name="book_description" required>
-                    <input class="w3-input  w3-margin-bottom" type="text" placeholder="Author" name="book_author" required>
-                    <input class="w3-input  w3-margin-bottom" type="text" placeholder="Publisher" name="book_publisher" required>
-                    <input class="w3-input  w3-margin-bottom" type="text" placeholder="Number of pages" name="book_pages" required>
-                    <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">Add</button>
+                    <input class="w3-input w3-margin-bottom" v-model="title" type="text" placeholder="Title"  name="book_title" required>
+                    <input class="w3-input w3-margin-bottom" v-model="genre" type="text" placeholder="Genre" name="book_genre" required>
+                    <input class="w3-input  w3-margin-bottom" v-model="description" type="textarea" placeholder="Description" name="book_description" required>
+                    <input class="w3-input  w3-margin-bottom" v-model="author" type="text" placeholder="Author" name="book_author" required>
+                    <input class="w3-input  w3-margin-bottom" v-model="publisher" type="text" placeholder="Publisher" name="book_publisher" required>
+                    <input class="w3-input  w3-margin-bottom" v-model="pages" type="text" placeholder="Number of pages" name="book_pages" required>
+                    <input class="w3-input  w3-margin-bottom" v-model="image_url" type="text" placeholder="Image URL" name="image_url" required>
+                    <input class="w3-input  w3-margin-bottom" v-model="buy_url" type="text" placeholder="Buy URL" name="buy_url" required>
+                    <button class="w3-button w3-block w3-grey w3-section w3-padding" @click="addBook" type="submit">Add</button>
+                    
+                    <div id="success" class="w3-panel w3-grey w3-display-container" style="display:none">
+                        <span onclick="this.parentElement.style.display='none'"
+                        class="w3-button w3-display-topright">X</span>
+                        <p>Book was created successfully</p>
+                    </div>
                 </div>
             </form>
             </div>
@@ -33,25 +41,37 @@ export default {
       },
       closeModal: function(){
         document.getElementById('modalForm').style.display='none';
-      }
-    },
-    beforeCreate() {
-      console.log('beforeCreated');
-    },
-    created() {
-         this.$http.get('http://localhost:3000/api/books').then(response => {
-          this.books = response.body;
-    }, function(response){
-      console.log(response.data);
-      }
-    )},
-    beforeMount(){
-      console.log('beforeMount');
-    },
+      },
 
+        addBook: function(){
+            this.$http.post('http://localhost:3000/api/books', {
+                title: this.title,
+                genre: this.genre,
+                description: this.description,
+                author: this.author,
+                publisher: this.publiser,
+                pages: this.pages,
+                image_url: this.image_url,
+                buy_url: this.buy_url
+
+            }, function(data, status, request){
+                this.postResults = data;
+            });
+        document.getElementById('success').style.display='block';
+
+        },
+    },
     data(){
       return{
         books: [],
+        title:'',
+        genre:'',
+        description:'',
+        author:'',
+        publisher:'',
+        pages:'',
+        img_url:'',
+        buy_url:''
       }
     }
 }   
