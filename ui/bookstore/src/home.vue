@@ -4,13 +4,13 @@
 
     <header-component></header-component>
         <div class="slide_show w3-display-container">
-            <button class="w3-button w3-black	w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-            <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+            <button class="w3-button w3-brown	w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+            <button class="w3-button w3-brown w3-display-right" onclick="plusDivs(1)">&#10095;</button>
         </div>
     <ul class="w3-container w3-row-padding"> 
       <h2>News</h2>     
       <books-card-component v-bind:key="book.id" v-for="book in books"
-      :title="book.title" :image_url="book.image_url"></books-card-component>
+      :title="book.title" :buy_url="book.buy_url" :image_url="book.image_url"></books-card-component>
     </ul>
   </div>
 </template>
@@ -70,14 +70,14 @@ body{
   height: 250px;
   background: no-repeat 50% 50%;
   background-size: cover;
-  box-shadow: 0.1cm 0.1ch 1ch;
+  box-shadow: 0.01cm 0.01ch 0.02ch;
 }
 
 .slide_show:before{
         height: 100%;
         width: 100%;
         background: #000;
-        opacity: 0.4;
+        opacity: 0.5;
     }
 
 @media only screen and (max-device-width: 1024px) {

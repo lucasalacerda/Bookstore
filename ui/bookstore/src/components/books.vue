@@ -3,7 +3,7 @@
         <div clas="image">
             <img :src="image_url">
         </div>   
-        <a href="#" class="w3-center" style="font-size: 10px">
+        <a :href="buy_url" class="w3-center" style="font-size: 10px">
             <p class="w3-center">{{title}}</p>
         </a>
     </li>
@@ -12,21 +12,20 @@
 <script>
 export default {
   name: "booksCardComponent",
-  props: ["title", "image_url", "description"]
+  props: ["title", "image_url", "description", 'buy_url']
 };
 </script>
-
-
 
 <style>
     img{
         max-height: 130px;
-        width: 130px;
+        width: 120px;
         margin-top: 5px
     }
-
     .card-book-item{
         height: 180px;
+        width: 100px;
+
         list-style-type: none;
         display: inline-block;
         position: relative;
