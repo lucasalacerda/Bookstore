@@ -73,16 +73,6 @@ body{
   box-shadow: 0.01cm 0.01ch 0.02ch;
 }
 
-.slide_show:before{
-        height: 100%;
-        width: 100%;
-        background: #000;
-        opacity: 0.5;
-    }
-
-@media only screen and (max-device-width: 1024px) {
-   
-}
 </style>
 
 
