@@ -12,18 +12,22 @@
         <div class="links">
             <a href="/" class="w3-bar-item w3-btn w3-wide w3-mobile">Home</a>
             <a href="/admin" class="w3-bar-item w3-btn w3-wide w3-mobile">Admin</a>
-            <a href="/results" class="w3-bar-item w3-btn w3-wide w3-mobile">Contact</a>
-            <a href="#" class="w3-bar-item w3-button w3-grey w3-right w3-wide w3-mobile">Go!</a>
-            <input type="text" class="w3-bar-item w3-input w3-right w3-mobile" placeholder="Search...">
+            <search-id-component></search-id-component>
         </div>
     </div>
     </div>
 </template>
 
 <script>
+
+import searchIdComponent from "./searchId.vue";
+
 export default {
-  name: "headerComponent"
-};
+    name: "headerComponent",
+    components:{
+        searchIdComponent,
+    },
+    }
 </script>
 
 <<style>

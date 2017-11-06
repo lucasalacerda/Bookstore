@@ -1,15 +1,12 @@
 <template>
   <div id="contain">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="../css/w3.css">
 
-    <header-component></header-component>
-        <div class="slide_show w3-display-container">
-            <button class="w3-button w3-brown	w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-            <button class="w3-button w3-brown w3-display-right" onclick="plusDivs(1)">&#10095;</button>
-        </div>
+    <header-component :insertId="insertId"></header-component>
+       
     <ul class="w3-container w3-row-padding"> 
       <h2>News</h2>     
-      <books-card-component v-bind:key="book.id" v-for="book in books"
+      <books-card-component :key="book.id" v-for="book in books"
       :title="book.title" :buy_url="book.buy_url" :image_url="book.image_url"></books-card-component>
     </ul>
   </div>
@@ -29,12 +26,14 @@ export default {
     console.log('beforeCreated');
   },
   created() {
-       this.$http.get('http://localhost:3000/api/books').then(response => {
+    this.$http.get('http://localhost:3000/api/books?limit=5').then(
+      response => {
         this.books = response.body;
-  }, function(response){
-    console.log(response.data);
-    }
-  )},
+      }, 
+      function(response){
+        console.log(response.data);
+      }
+    )},
   beforeMount(){
     console.log('beforeMount');
   },
@@ -43,6 +42,7 @@ export default {
       projectName: 'Bookstore',
       intervalo: null,
       books:[],
+      insertId: '59e42289843e40c0c7582b57',
     }
   },
 

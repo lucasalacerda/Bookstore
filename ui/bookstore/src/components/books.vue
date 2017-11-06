@@ -25,7 +25,7 @@ export default {
     .card-book-item{
         height: 180px;
         width: 100px;
-
+        background-color:  #c89e75;
         list-style-type: none;
         display: inline-block;
         position: relative;

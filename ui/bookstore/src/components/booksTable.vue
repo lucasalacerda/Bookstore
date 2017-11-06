@@ -23,9 +23,8 @@
                     <input class="w3-input w3-margin-bottom" v-model="image_url" type="text" placeholder="Image URL" name="image_url" required>
                     <input class="w3-input w3-margin-bottom" v-model="buy_url" type="text" placeholder="Buy URL" name="buy_url" required>
                     <input class="w3-input w3-margin-bottom" v-model="_id" type="hidden" placeholder="id" name="id" required>
-                    <button class="w3-btn  w3-brown w3-section w3-col m4 l6 w3-padding"  @click="editBook" type="submit">Save</button>
                     <button class="w3-btn  w3-red w3-section w3-col m4 l6 w3-padding"  @click="removeBook" type="submit">Remove</button>
-
+                    <button class="w3-btn  w3-brown w3-section w3-col m4 l6 w3-padding"  @click="editBook" type="submit">Save</button>
                 </div>
             </form>
             </div>
@@ -42,7 +41,6 @@ export default {
      methods:{
       openModal: function(){
           document.getElementById(this._id).style.display='block';
-        console.log('http://localhost:3000/api/books/'+this._id)
       },
       closeModal: function(){
         document.getElementById(this._id).style.display='none';
@@ -66,11 +64,5 @@ export default {
           this.$http.delete(`http://localhost:3000/api/books/${this._id}`);
       }
     },
-
-    data(){
-      return{
-
-      }
-    }
 }
 </script>

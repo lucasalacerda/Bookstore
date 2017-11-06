@@ -20,8 +20,10 @@
               <th>Actions</th>
             </tr>
             <book-table-component v-bind:key="book._id" v-for="book in books"
-            :title="book.title" :genre="book.genre" :author="book.author"
-            :createDate="book.createDate"></book-table-component>
+            :title="book.title" :genre="book.genre" :description="book.description" 
+            :author="book.author" :publisher="book.publisher" :pages="book.pages"
+            :image_url="book.image_url" :buy_url="book.buy_url" :_id="book._id"
+            :createDate="book.create_date"></book-table-component>
           </table>
         </div>
       </div>

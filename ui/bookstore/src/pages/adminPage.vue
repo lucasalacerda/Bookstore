@@ -1,6 +1,6 @@
 <template>
   <div id="contain">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="../css/w3.css">
     
     <header-component></header-component>
     <book-list-component></book-list-component>
