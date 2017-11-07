@@ -1,18 +1,30 @@
 <template>
-    <li class="card-book-item w3-card-4 w3-center w3-col m4 l2 w3-mobile">
-        <div clas="image">
+    <li :id="_id" class="card-book-item w3-card-4 w3-col m4 l2 w3-mobile">
+        <div clas="image w3-left">
             <img :src="image_url">
-        </div>   
-        <a :href="buy_url" class="w3-center" style="font-size: 10px">
+        </div> 
+        <p>
+            <router-link :to="{path: `/cart/${_id}`}"> 
+                <span class="fa fa-shopping-cart"></span>
+            </router-link>
+        </p> 
+        <router-link :to="{path: '/cart/lol', params: {_id: _id}}" class="w3-center" style="font-size: 10px">
             <p class="w3-center">{{title}}</p>
-        </a>
+        </router-link>
+          <router-view></router-view>
     </li>
 </template>
 
 <script>
+import bookDetail from "../components/bookDetail.vue";
+
+
 export default {
+    components:{
+        bookDetail,
+    },
   name: "booksCardComponent",
-  props: ["title", "image_url", "description", 'buy_url']
+  props: ["title", "image_url", "description", 'buy_url', '_id']
 };
 </script>
 
@@ -20,7 +32,7 @@ export default {
     img{
         max-height: 130px;
         width: 120px;
-        margin-top: 5px
+        margin-top: 5px;
     }
     .card-book-item{
         height: 180px;

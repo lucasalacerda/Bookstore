@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <title>bookstore</title>
   </head>
   <body>
-    <div id="app"></div>
+    
+          <!-- use router-link component for navigation. -->
+          <!-- specify the link by passing the `to` prop. -->
+          <!-- <router-link> will be rendered as an `<a>` tag by default -->
+              
+    <div id="app">
+    
+ 
+ <!-- route outlet -->
+ <!-- component matched by the route will render here -->
+      <router-view></router-view>
+    </div>
     <script src="/dist/build.js"></script>
   </body>
 </html>

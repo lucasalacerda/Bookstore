@@ -1,13 +1,16 @@
+
 <template>
   <div id="contain">
     <link rel="stylesheet" href="../css/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <header-component :insertId="insertId"></header-component>
+    
+    <header-component></header-component>
        
     <ul class="w3-container w3-row-padding"> 
       <h2>News</h2>     
       <books-card-component :key="book.id" v-for="book in books"
-      :title="book.title" :buy_url="book.buy_url" :image_url="book.image_url"></books-card-component>
+      :title="book.title" :_id="book._id" :buy_url="book.buy_url" :image_url="book.image_url"></books-card-component>
     </ul>
   </div>
 </template>
@@ -18,9 +21,23 @@ import booksCardComponent from "./components/books.vue";
 
 
 export default {
+  name: 'home',
+
   components: {
     headerComponent,
     booksCardComponent,
+  },
+  computed: {
+    username () {
+      return this.$route.params.username
+    }
+  },
+  methods: {
+    goBack () {
+      window.history.length > 1
+        ? this.$router.go(-1)
+        : this.$router.push('/')
+    }
   },
   beforeCreate() {
     console.log('beforeCreated');
@@ -37,12 +54,10 @@ export default {
   beforeMount(){
     console.log('beforeMount');
   },
-  data() {
+  data: function() {
     return {
       projectName: 'Bookstore',
-      intervalo: null,
       books:[],
-      insertId: '59e42289843e40c0c7582b57',
     }
   },
 

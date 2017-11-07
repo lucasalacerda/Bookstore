@@ -12,6 +12,7 @@
     "mongodb": "^2.2.33",
     "vue": "^2.4.4",
     "vue-resource": "^1.3.4",
+    "vue-router": "^3.0.1",
     "w3css": "^2.7.0"
   },
   "devDependencies": {

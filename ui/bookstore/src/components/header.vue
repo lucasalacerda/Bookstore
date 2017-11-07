@@ -1,3 +1,5 @@
+
+
 <template>
     <div class="w3-bar w3-light-grey">
         <div class="w3-display-container">
@@ -9,9 +11,11 @@
             </div>
         </div>
         <div class="links">
-            <a href="/" class="w3-bar-item w3-btn w3-wide w3-mobile">Home</a>
-            <a href="/admin" class="w3-bar-item w3-btn w3-wide w3-mobile">Admin</a>
+            <router-link to="/" class="w3-bar-item w3-btn w3-wide w3-mobile">Home</router-link>
+            <router-link to="/admin" class="w3-bar-item w3-btn w3-wide w3-mobile">Admin</router-link>
             <search-id-component></search-id-component>
+            <router-view></router-view>
+
         </div>
     </div>
 </template>
@@ -26,8 +30,20 @@ export default {
     components:{
         searchIdComponent,
         loginUser,
-    },
+    },  computed: {
+    username () {
+      // We will see what `params` is shortly
+      return this.$route
     }
+  },
+  methods: {
+    goBack () {
+      window.history.length > 1
+        ? this.$router.go(-1)
+        : this.$router.push('/')
+    }
+  },
+}
 </script>
 
 <style>
