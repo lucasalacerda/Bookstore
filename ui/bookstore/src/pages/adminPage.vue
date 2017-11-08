@@ -1,5 +1,7 @@
 <template>
   <div id="contain">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <link rel="stylesheet" href="../css/w3.css">
     
     <header-component></header-component>

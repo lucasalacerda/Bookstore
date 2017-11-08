@@ -1,5 +1,3 @@
-
-
 <template>
     <div class="w3-bar w3-light-grey">
         <div class="w3-display-container">
@@ -13,6 +11,10 @@
         <div class="links">
             <router-link to="/" class="w3-bar-item w3-btn w3-wide w3-mobile">Home</router-link>
             <router-link to="/admin" class="w3-bar-item w3-btn w3-wide w3-mobile">Admin</router-link>
+            <router-link to="/cart" class="w3-bar-item w3-btn w3-wide w3-mobile">
+                Cart
+                <span class="fa fa-shopping-cart"></span>
+            </router-link>
             <search-id-component></search-id-component>
             <router-view></router-view>
 

@@ -8,20 +8,19 @@ Vue.use(VueRouter);
 //import pages
 import App from './home.vue'
 import SearchResult from './pages/searchResult.vue'; 
-import AdminPage from './pages/adminPage.vue'
+import AdminPage from './pages/adminPage.vue';
 import cart from './pages/cart.vue';
-import header from './components/header.vue';
+import bookDetail from './pages/bookDetail.vue';
 
 
-const NotFound = { template: '<p>Página não encontrada</p>' }
-const Foo = { template: '<div>foo</div>' }
-const Bar = { template: '<div>bar</div>' }
-const headers = { template: '<div>lololo</div>' }
+const NotFound = { template: '<p>Página não encontrada</p>' };
 
 const routes = [
   {path: '/', component: App},
   {path: '/admin', component: AdminPage},
-  {path: '/cart/:id', component: cart}
+  {name: 'cartid', path: '/cart', component: cart},  
+  {name: 'cart', path: '/cart/:id', component: cart},
+  {name: 'bookdetail', path: '/bookDetail/:id', component: bookDetail}
 
 ]
   

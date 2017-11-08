@@ -6,12 +6,13 @@ const mongoose = require('mongoose');
 const booksRoute = require('./api/routes/booksRoute');
 const userRoute = require('./api/routes/usersRoute');
 const genresRoute = require('./api/routes/genresRoute');
+const purchaseRoute = require('./api/routes/purchaseRoute');
 
 app.use(cors())
 
 app.use(bodyParser.json());
 
-app.use(booksRoute, userRoute, genresRoute);
+app.use(booksRoute, userRoute, genresRoute, purchaseRoute);
 
 //Connect to mongoose
 setTimeout(function() {

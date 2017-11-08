@@ -30,7 +30,7 @@ router.post('/api/genres', function(req, res){
 router.put('/api/genres/:_id', function(req, res){
     var id = req.params._id;
     var genre = req.body;
-    Genre.update(id, genre, {}, function(err, genre){
+    Genre.update(id, genre, function(err, genre){
         if(err){
             throw err;
         }

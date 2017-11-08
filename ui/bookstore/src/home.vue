@@ -1,4 +1,3 @@
-
 <template>
   <div id="contain">
     <link rel="stylesheet" href="../css/w3.css">
@@ -68,12 +67,6 @@ export default {
 
 html{
   margin: 0px;
-}
-
-h1{
-  padding: 0.5em 4em;
-  margin:0px;
-  position: center;
 }
 
 body{
