@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -8,12 +9,17 @@ const userRoute = require('./api/routes/usersRoute');
 const genresRoute = require('./api/routes/genresRoute');
 const purchaseRoute = require('./api/routes/purchaseRoute');
 
-app.use(cors())
+app.use(cors());
 
 app.use(bodyParser.json());
 
-app.use(booksRoute, userRoute, genresRoute, purchaseRoute);
-
+app.use(booksRoute, genresRoute, purchaseRoute);
+app.use(userRoute);
+app.use(session({
+    secret: 'work hard',
+    resave: true,
+    saveUninitialized: false
+}));
 //Connect to mongoose
 setTimeout(function() {
     mongoose.connect('mongodb://localhost/bookstore');

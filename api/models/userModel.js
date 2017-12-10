@@ -1,28 +1,68 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 // Book Schema
 
 var userSchema = mongoose.Schema({
-    name:{
+    name: {
         type: String,
-        required: true 
+        required: false
     },
-    email:{
+    email: {
         type: String,
-        required: true 
+        required: true,
+        unique: true,
+        trim: true
     },
-    password:{
+    password: {
         type: String,
-        required: true 
+        required: true,
     },
-    picture:{
+    passwordConf: {
         type: String,
-        required: true 
+        required: false,
     },
-    type:{
+    token:{
         type: String,
-        required: true
+        required: true,
+    },
+    picture: {
+        type: String,
+        required: false,
+    },
+    type: {
+        type: String,
+        required: false
     }
 });
+
+userSchema.methods.generateToken = function(email, password){
+    return jwt.sign({
+        'email': email,
+        'password': password,
+    }, 'secret');
+}
+
+userSchema.methods.generatePassword = function(password){
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(9))
+}
+
+userSchema.methods.checkPassword = function(password){
+    return bcrypt.compareSync(password, this.password);
+}
+/*
+userSchema.pre('save', function (next) {
+    var user = this;
+    bcrypt.hash(user.password, 10, function (err, hash) {
+        if (err) {
+            return next(err);
+        }
+        user.password = hash;
+        user.passwordConf = hash;
+        next();
+    })
+});
+*/
 
 module.exports = mongoose.model('User', userSchema)

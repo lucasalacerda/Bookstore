@@ -11,9 +11,10 @@
             <form class="w3-container">
                 <div class="w3-section">
                     <h2 class="w3-left">Login</h2>
-                    <input class="w3-input w3-margin-bottom"  type="text" placeholder="Email"  name="book_title" required>
-                    <input class="w3-input w3-margin-bottom"  type="text" placeholder="Password" name="book_genre" required>
-                    <button class="w3-btn w3-block w3-brown w3-section w3-padding" @click="login" type="submit">Login</button>
+                    <!-- <input class="w3-input w3-margin-bottom" type="text" v-model="email" placeholder="Email"  name="user_email" required>
+                    <input class="w3-input w3-margin-bottom" type="text" v-model="Password" placeholder="Password" name="user_password" required>
+                    <button class="w3-btn w3-block w3-brown w3-section w3-padding" @click="login" type="submit">Login</button> -->
+                    <FBloginComponent></FBloginComponent>
                 </div>
             </form>
             </div>
@@ -21,45 +22,54 @@
     </div>
 </template>
 
-<style>
-    #picUser{
-        position: absolute;
-        top: 0px;
-        right: 0px;
-        margin: 1em;
-        width: 46px;
-        height: 50px;
-    }
-    #picUserImage{
-        width: 40px;
-        height: 37px;
-    }
-    .text{
-        color: white;
-        margin: 0;
-    }
-</style>
-
 <script>
-import modalFormGeral from './modalForm.vue';
+import modalFormGeral from "./modalForm.vue";
+import FBloginComponent from "./componentFB.vue";
 
 export default {
-     name: 'loginUser',
-     components: modalFormGeral,
-     methods:{
-        openModalLogin: function(){
-            document.getElementById('modalFormLogin').style.display='block';
-        },
-        closeModalLogin: function(){
-            document.getElementById('modalFormLogin').style.display='none';
-        },
-        login: function(){
-
-        }
+  name: "loginUser",
+  components: {
+    modalFormGeral,
+    FBloginComponent,
+  },
+  methods: {
+    openModalLogin: function() {
+      document.getElementById("modalFormLogin").style.display = "block";
     },
-     data:{
-        paramTitle: 'Login',
-        paramField: 'login',
-     }
-}
+    closeModalLogin: function() {
+      document.getElementById("modalFormLogin").style.display = "none";
+    },
+    login: function() {
+      
+
+    }
+  },
+  data () {
+    return{
+      paramTitle: "Login",
+      paramField: "login"
+    }
+  }
+};
 </script>
+
+
+<style>
+#picUser {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  margin: 1em;
+  width: 46px;
+  height: 50px;
+}
+#picUserImage {
+  width: 40px;
+  height: 37px;
+  cursor: pointer;
+}
+.text {
+  color: white;
+  margin: 0;
+}
+</style>

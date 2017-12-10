@@ -1,4 +1,4 @@
-var Purchase = require('../models/purchaseModel');
+const Purchase = require('../models/purchaseModel');
 
 // Get purchase
 module.exports.getAll = function(callback, limit){

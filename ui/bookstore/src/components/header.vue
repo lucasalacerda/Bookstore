@@ -9,8 +9,8 @@
             </div>
         </div>
         <div class="links">
-            <router-link to="/" class="w3-bar-item w3-btn w3-wide w3-mobile">Home</router-link>
-            <router-link to="/admin" class="w3-bar-item w3-btn w3-wide w3-mobile">Admin</router-link>
+            <router-link to="/" @click="changeLogin" class="w3-bar-item w3-btn w3-wide w3-mobile">Home</router-link>
+            <router-link v-if="this.logged" to="/admin" class="w3-bar-item w3-btn w3-wide w3-mobile">Admin</router-link>
             <router-link to="/cart" class="w3-bar-item w3-btn w3-wide w3-mobile">
                 Cart
                 <span class="fa fa-shopping-cart"></span>
@@ -32,19 +32,52 @@ export default {
     components:{
         searchIdComponent,
         loginUser,
-    },  computed: {
-    username () {
-      // We will see what `params` is shortly
-      return this.$route
-    }
+    },
+   data () {
+        return{
+            logged: false
+        }
+    },
+    computed: {
+        username () {
+          // We will see what `params` is shortly
+          return this.$route
+        },
+        
   },
   methods: {
     goBack () {
       window.history.length > 1
         ? this.$router.go(-1)
         : this.$router.push('/')
+        },
+    changeLogin(){
+        this.logged = true;
     }
-  },
+    },
+
+    created(){
+        FB.getLoginStatus(function(response) {
+          if (response.status === 'connected') {
+           // the user is logged in and has authenticated your
+           // app, and response.authResponse supplies
+           // the user's ID, a valid access token, a signed
+           // request, and the time the access token 
+           // and signed request each expire
+           var uid = response.authResponse.userID;
+           var accessToken = response.authResponse.accessToken;
+            this.logged = true;
+            console.log(logged)
+           console.log('HEADER DEU BOM')
+          } else if (response.status === 'not_authorized') {
+          this.logged = false;
+          } else {
+            // the user isn't logged in to Facebook.
+          }
+      });
+    }
+
+
 }
 </script>
 
