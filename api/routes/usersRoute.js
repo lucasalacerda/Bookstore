@@ -17,13 +17,15 @@ function getToken(req, res, next){
 router.post('/api/users/register', function(req, res){
     const email = req.body.email;
     const password = req.body.password;
-    User.addCheck(email, password, function(resp){
+    const user = req.body;
+    User.addCheck2(user, function(resp){
         res.json(resp);
     })
 });
 
 router.get('/api/users/list', getToken, function(req, res){
     const token = req.token;
+    const user = req.body;
     User.listOne(token, function(resp){
         res.json(resp);
     });

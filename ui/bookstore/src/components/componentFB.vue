@@ -4,11 +4,6 @@
     :params="fbSignInParams" @success="onSignInSuccess" @error="onSignInError">
     Sign in with Facebook
   </fb-signin-button>
-
-<button @click="authenticate('facebook')">auth Facebook</button>
-
-<button @click="login()">Login</button>
-<button @click="register()">Register</button>
 </div>
 </template>
 
@@ -24,25 +19,6 @@ export default {
     }
   },
   methods: {
-      login: function () {
-          email = 'lucasalveslacerda@hotmail.com'
-          password = '!Casa!Tomada!'
-      this.$auth.login({ email, password }).then(function () {
-        // Execute application logic after successful login
-        console.log('teste')
-      })
-    },
-
-    register: function () {
-      this.$auth.register({ name, email, password }).then(function () {
-        // Execute application logic after successful registration
-      })
-    },
-    authenticate: function (provider) {
-      this.$auth.authenticate(provider).then(function () {
-        // Execute application logic after successful social authentication
-      })
-    },
 
     onSignInSuccess (response) {
       FB.api('/me', dude => {
@@ -52,21 +28,15 @@ export default {
       }),
       FB.getLoginStatus(function(response) {
             if (response.status === 'connected') {
-             // the user is logged in and has authenticated your
-             // app, and response.authResponse supplies
-             // the user's ID, a valid access token, a signed
-             // request, and the time the access token 
-             // and signed request each expire
+            
              var uid = response.authResponse.userID;
              var accessToken = response.authResponse.accessToken;
              console.log('deu bom')
             } else if (response.status === 'not_authorized') {
-              // the user is logged in to Facebook, 
-              // but has not authenticated your app
+            
                 console.log('deu ruim')
 
             } else {
-              // the user isn't logged in to Facebook.
                 console.log('indefinido')
 
             }
@@ -94,5 +64,6 @@ export default {
   border-radius: 3px;
   background-color: #4267b2;
   color: #fff;
+  cursor: pointer;
 }
 </style>

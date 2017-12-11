@@ -37,10 +37,10 @@ var userSchema = mongoose.Schema({
     }
 });
 
-userSchema.methods.generateToken = function(email, password){
+userSchema.methods.generateToken = function(email, name){
     return jwt.sign({
         'email': email,
-        'password': password,
+        'name': name,
     }, 'secret');
 }
 

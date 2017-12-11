@@ -6,19 +6,22 @@ module.exports.getAll = function (callback, limit) {
     User.find(callback).limit(limit);
 }
 
-module.exports.addCheck = function(email, password, callback){
-    User.findOne({'email': email}, function(err, user){
+module.exports.addCheck = function(userParam, callback){
+    User.findOne({'email': userParam.email}, function(err, user){
             if(err){
-                callback('Errorsss');
+                callback('Error to find');
             }
             else if(user){
                 callback('This credentials is already in use');
             }
             else {
                 var newUser = new User();
-                newUser.email = email;
-                newUser.password = newUser.generatePassword(password);
-                newUser.token = newUser.generateToken(email, password);
+                newUser.name = userParam.name;                
+                newUser.email = userParam.email;
+                newUser.password = newUser.generatePassword(userParam.password);                
+                newUser.picture = userParam.picture;
+                newUser.type = userParam.type;
+                newUser.token = newUser.generateToken(userParam.email, userParam.password);
                 newUser.save(function(err, user){
                     if(err){
                         callback('Errorsss');
@@ -31,6 +34,7 @@ module.exports.addCheck = function(email, password, callback){
     });
 }
 
+
 module.exports.login = function(email, password, callback){
     User.findOne({'email': email}, function(err, user){
         if(err){
@@ -38,13 +42,17 @@ module.exports.login = function(email, password, callback){
         }
         else if(user){
             if(user.checkPassword(password)){
+                console.log('Deu certo Lukeraaa!');
                 callback(user.token);
             }
             else{
-                callback(`wrong password ${user.password} + ${password}`);
+                console.log('Senha errada')
+                callback(`wrong password ${password}`);
             }
         }
         else{
+            console.log('Usuário não existe')
+            
             callback('user is not on the database');
         }
     })
@@ -57,9 +65,8 @@ module.exports.listOne = function(token, callback){
         }
         else if(user){
             callback(
-            {
-              'email': user.email
-            });
+                user
+            );
         }
         else{
             callback('User not on the database');
