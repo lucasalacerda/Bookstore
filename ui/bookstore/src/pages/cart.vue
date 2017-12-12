@@ -14,12 +14,39 @@
               <div>
                 <h4>{{books.title}}</h4>
                 <p>{{books.description}}</p>
+                <p>{{books.price}}</p>
               </div>
             </div>
           </li>
         <div style="margin: 1em 0em">
-          <button @click="createPurchase" type="submit" class="w3-btn w3-border w3-right">Buy all books</button>
+          <div id="actionsCart">
+            <h3>Input the CEP to validate before purchase</h3>
+            <input class="w3-input w3-margin-bottom" style="max-width: 80vw; float:left" v-model="insertCep" type="text" placeholder="CEP" name="CEP" required>
+            <button @click="sendCEP" type="submit" style="max-width: 20vw;" class="w3-btn w3-border w3-right">Validate CEP</button>
+          </div>
+
+          <div id="data" v-if="show" style="max-height: 250px" class="cart-list w3-col m12 l12 w3-mobile">
+            <li class="w3-card-4 w3-padding" style="width:100%; display: flex-box">
+            
+            <h4>Address</h4>
+            <p>{{info.bairro}}</p>
+            <p>{{info.logradouro}}</p>
+            <p>{{info.ibge}}</p>
+            </li>
+          </div>
+
+          <button v-if="show" @click="createPurchase" type="submit" style="max-width: 20vw;" class="w3-btn w3-border w3-right">Buy all books</button>
           
+          <div id="modalError" class="w3-modal w3-row" style="padding: 2em 2em;">
+            <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="width:400px; height: 100px">
+              <div class="w3-center"><br>
+                <span v-on:click="closeModal" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+                <p class="w3-padding">Please, insert CEP before validate!</p>
+              </div>
+            </div>
+          </div>
+
+
           <div id="modalConfirm" class="w3-modal w3-row" style="padding: 2em 2em;">
             <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="width:400px; height: 100px">
               <div class="w3-center"><br>
@@ -49,9 +76,27 @@ export default {
       return{
         listCart:[],
         books:[],
+        info:{},
+        insertCep:'',
+        show: false,
       }
     },
     methods:{
+
+      sendCEP(){
+        if(this.insertCep != ''){
+          this.show = true;
+          console.log(this.insertCep);
+          this.$http.get(`https://viacep.com.br/ws/${this.insertCep}/json/`).then(
+              resp => {
+              let response = resp.data;
+              this.info = response;  
+            });
+        }
+        else{
+          document.getElementById('modalError').style.display='block';
+        }
+      },
       createPurchase: function(){
         document.getElementById('modalConfirm').style.display='block';
        
@@ -59,6 +104,7 @@ export default {
         title: this.books.title,
         description: this.books.description,
         author: this.books.author,
+        price: this.books.price,
         user: 'lucas',
         }, function(data, status, request){
             this.postResults = data;
@@ -68,6 +114,8 @@ export default {
 
       closeModal: function(){
         document.getElementById('modalConfirm').style.display='none';
+        document.getElementById('modalError').style.display='none';
+
       }
     },
     computed:{
@@ -94,6 +142,13 @@ export default {
 <style>
   li{
     list-style-type: none;
+  }
+  #actionsCart{
+    margin: 10px 0px;
+    padding: 10px 0px;
+  }
+  #data{
+    float: left;
   }
 
 </style>
